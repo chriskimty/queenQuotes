@@ -1,0 +1,50 @@
+@use "variables" as *;
+
+.wrapper {
+    max-width: 1728px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+
+// .headerMenu a {
+//     padding: 0;
+//     border: 0;
+//     transition: 0.3s;
+//     &:hover {
+//         color: $cyan;
+//     }
+//      &:focus {
+//         color: $cyan;
+//     }
+// }
+
+.button {
+    color: $pink;
+    background-color: #e5007a62;
+    padding: 18px 36px;
+    font-size: 1rem;
+    line-height: 32px;
+    letter-spacing: 1px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+        background-color: #e5007ab4;
+    }
+     &:focus {
+        background-color: #e5007ab4;
+    }
+}
+
+ul {
+    list-style: none;
+}
+

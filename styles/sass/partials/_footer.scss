@@ -1,0 +1,64 @@
+@use "variables" as *;
+
+footer {
+    .footerMainContainer {
+        background-color: $red;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        .ruPaulQuote {
+            h5 {
+                font-size: 2rem;
+                padding: 0px 80px;
+                span {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        .socialMedias {
+            // this looks kind of awkward so we could move it later 
+            ul {
+                display: flex;
+                
+                li {
+                    margin: 10px;
+                    font-size: 2rem;
+                    a {
+                        color: $white;
+                        &:hover {
+                            color: $turquoise;
+                        }
+                    }
+                }
+            }   
+        }
+    }
+    .footerContributions {
+        background-color: $black;
+        text-align: center;
+        padding: 12px;
+        p {
+            font-family: $logoFont;
+            letter-spacing: 0.8px;
+            font-size: 0.8rem;
+            line-height: 10px;
+            span {
+                font-size: 1.3rem;
+                line-height: 30px;
+            }
+            a {
+                color: $white;
+                text-decoration: none;
+                transition: 0.3s;
+                &:hover {
+                    color: $hotPink;
+                }
+                &:focus {
+                    color: $hotPink;
+                }
+            }
+        }
+    }       
+}
+
