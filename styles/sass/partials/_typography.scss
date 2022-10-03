@@ -1,0 +1,102 @@
+@use "variables" as *;
+
+// FONT-FAMILY
+
+// Bauhaus
+@font-face {
+    font-family:"Bauhaus93";
+    src: url('../fonts/bauhaus/bauhaus93.TTF');
+    font-weight: normal; 
+}
+
+// Broadway Flat Regular
+@font-face {
+    font-family:"Broadway Flat";
+    src: url('../fonts/broadway/broadwayFlatRegular.ttf');
+    font-weight: normal; 
+}
+
+// Broadway Flat 3D Regular
+@font-face {
+    font-family:"Broadway Flat 3D";
+    src: url('../fonts/broadway/broadwayFlat3DRegular.ttf');
+    font-weight: normal; 
+}
+
+// Chalet New York 1970
+@font-face {
+    font-family:"Chalet New York";
+    src: url('../fonts/chaletNewYork/chaletNewYorkNineteenSeventy.ttf');
+    font-weight: normal; 
+}
+
+// Helvetica Neue ULTRA LIGHT
+@font-face {
+    font-family:"Helvetica Neue";
+    src: url('../fonts/helveticaNeue/helveticaNeueUltraLight.ttf');
+    font-weight: light; 
+}
+
+// Helvetica Neue NORMAL
+@font-face {
+    font-family:"Helvetica Neue";
+    src: url('../fonts/helveticaNeue/helveticaNeueMediumExtended.ttf');
+    font-weight: normal; 
+}
+
+// Helvetica Neue MBOLD
+@font-face {
+    font-family:"Helvetica Neue";
+    src: url('../fonts/helveticaNeue/helveticaNeueBlkExtObl.ttf');
+    font-weight: bold; 
+}
+
+// Noto Sans Mono
+@font-face {
+    font-family:"Noto Sans Mono";
+    src: url('../fonts/notoSansMono/NotoSansMono-VariableFont_wdth,wght.ttf');
+    font-weight: normal; 
+}
+
+
+html {
+  font-size: 125%;
+}
+
+// I really don't like the h1 font right now! We'll need to do some searching for better fonts later! 
+h1 {
+    font-family: $logoFont;
+    font-size: 6rem;
+    color: $white;
+    font-weight: lighter;
+}
+
+h2, h3, h4, h5, p {
+    font-family: $bodyFont;
+    font-weight: lighter;
+    color: $white;
+}
+
+h2 {
+    line-height: 1.5;
+    font-size: 2rem;
+}
+
+h3 {
+    line-height: 1.5;
+    font-size: 3.5rem;
+    margin: 0 auto;
+}
+
+h4 {
+    line-height: 1.5;
+    font-size: 2.8rem;
+}
+
+.button a, .answersContainer li, button {
+    text-decoration: none;
+    font-family: $buttonFont;
+    color: $white;
+    font-size: 1.5rem;
+
+}

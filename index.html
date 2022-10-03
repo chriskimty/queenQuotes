@@ -5,99 +5,115 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drag Race Quiz</title>
+    <title>👑Drag Race Quiz</title>
     <link rel="stylesheet" href="./styles/styles.css">
-    <script src="https://kit.fontawesome.com/279611ab89.js"
-    crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/279611ab89.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header>
-        <a class="logo wrapper" href="https://www.youtube.com/c/rupaulsdragrace/featured">
-            <img class="logoImg" src="" alt="RuPaul Drag Race logo">
-        </a>
-
-        <div class="headerTextContainer">
-            <h1>Good Luck And Don't F*** It Up!</h1>
-            <h2>How well do you know the superstars of Ru Paul's Drag Race? Start your engines, and may the best drag queen fan win!</h2>
-            <a class="button" href="#quizSection">Start Game</a>
+        <div class="wrapper">
+            <a class="logo" href="https://www.youtube.com/c/rupaulsdragrace/featured">
+                <img class="logoImg" src="./assets/logoPink.png" alt="RuPaul Drag Race logo">
+            </a>
+            <div class="headerTextContainer">
+                <h1>Good Luck, <br> and <br> <span>Don't</span> F*** It Up.</h1>
+                <h2>How well do you know the superstars of RuPaul's Drag Race? <br> Start your engines, and may the best
+                    drag
+                    queen fan win!</h2>
+                <div class="button">
+                    <a href="#quizSection">Start Game</a>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main id="quizSection">
-        <div class="mainTextContainer">
-            <h3>Guess the Quote</h3>
-            <h4 class="quoteContainer">Quote</h4>
-            <ul class="answersContainer">
-                <li class="button">Option1</li>
-                <li class="button">Option2</li>
-            </ul>
-        </div>
+    <main>
+        <section id="quizSection" class="quiz">
+            <div class="mainTextContainer">
+                <div class="wrapper">
+                    <h3>Which QUEEN famously said...</h3>
+                    <h4 class="quoteContainer">"Quote is randomized here through the API and is probably about this long
+                        in
+                        average!"</h4>
+                    <ul class="answersContainer">
+                        <li class="button">Option1</li>
+                        <li class="button">Option2</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
         <div class="hiddenMain">
-            <div class="hiddenImgContainer">
-                <img href="" alt="Image of the Queen who said the quote">
-            </div>
-            <div class="hiddenButtonContainer">
-                <button class="hiddenButton">Replay</button>
-            </div>
-            <div class="hiddenLearnMoreContainer">
-                <p>Learn More <a href="https://en.wikipedia.org/wiki/RuPaul%27s_Drag_Race">here</a></p>
+            <div class="wrapper">
+                <div class="hiddenImgContainer">
+                    <img src="http://placekitten.com/g/500/500" alt="Image of the Queen who said the quote">
+                    <!-- just a placeholder image for now because these will be generated via JS -->
+                </div>
+                <div class="hiddenButtonContainer">
+                    <button class=" button hiddenButton">Replay</button>
+                </div>
+                <div class="hiddenLearnMoreContainer">
+                    <p>Learn More <a href="https://en.wikipedia.org/wiki/RuPaul%27s_Drag_Race">&#10154;here</a></p>
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <div class="footerContainer">
+        <div class="footerMainContainer">
             <div class="footerImg">
-                <img href="" alt="RuPaul's Drag Queen face">
+                <img src="./assets/ruPaulPopArt.jpeg" alt="popart of RuPaul gasping">
             </div>
             <div class="ruPaulQuote">
-                <h5>"If You Can't Love Yourself, How In The Hell Are You Going to Love Somebody Else?!"</h5>
+                <h5>"If you can't love yourself, how in the hell are you going to love somebody else?!"
+                    <br><span>-RuPaul</span>
+                </h5>
             </div>
             <div class="socialMedias">
                 <ul>
                     <li>
-                        <a href="https://www.facebook.com/rupaulsdragrace/" aria-label="Go to RuPaul's Drag Race Facebook page">
+                        <a href="https://www.facebook.com/rupaulsdragrace/"
+                            aria-label="Go to RuPaul's Drag Race Facebook page">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/rupaulofficial/?hl=en" aria-label="Go to RuPaul's Drag Race Instagram page">
+                        <a href="https://www.instagram.com/rupaulofficial/?hl=en"
+                            aria-label="Go to RuPaul's Drag Race Instagram page">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.tiktok.com/@rupaulofficial?lang=en" aria-label="Go to RuPaul's Drag Race Tiktok page">
+                        <a href="https://www.tiktok.com/@rupaulofficial?lang=en"
+                            aria-label="Go to RuPaul's Drag Race Tiktok page">
                             <i class="fa-brands fa-tiktok"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/rupaulsdragrace/?lang=en" aria-label="Go to RuPaul's Drag Race Twitter page">
+                        <a href="https://twitter.com/rupaulsdragrace/?lang=en"
+                            aria-label="Go to RuPaul's Drag Race Twitter page">
                             <i class="fa-brands fa-twitter"></i>
                         </a>
                     </li>
-                </ul>   
-            </div>
-            <div class="footerTextConatiner">
-                <p>
-                    <span>Created by QUEENS 
-                        <a href="https://github.com/chriskimty">Chris</a>
-                        <a href="https://github.com/paulavivasteixeira">Paula</a>
-                    </span>
-                </p>
-                <p>Powered by 
-                    <a href="https://drag-race-api.readme.io/docs ">No Key No Shade API</a>
-                </p>
-                <p>Copyright &copy 2022
-                    <a href="http://junocollege.com/" target="_blank"
-                      >Juno College of Technology</a
-                    >
-                  </p>
+                </ul>
             </div>
         </div>
+        <div class="footerContributions">
+            <p>
+                <span>Created by QUEENS 👑
+                    <a href="https://github.com/chriskimty">Chris</a> &
+                    <a href="https://github.com/paulavivasteixeira">Paula</a>
+                </span>
+            </p>
+            <p>Powered by
+                <a href="https://drag-race-api.readme.io/docs ">No Key No Shade API</a>
+            </p>
+            <p>Copyright&copy; 2022
+                <a href="http://junocollege.com/" target="_blank">Juno College of Technology</a>
+            </p>
+        </div>
     </footer>
-
 
     <script src="./app.js"></script>
 </body>

@@ -1,0 +1,85 @@
+@use "variables" as *;
+
+main {
+    .quiz {
+       background-image: url(../assets/mainImgOpt1.png);
+        background-size: cover;
+        height: max(80vh, 900px);
+        .mainTextContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            h3, h4, li {
+                border: 3px solid $white;
+                background-color: #4d424989;
+            }
+            h4 {
+                padding: 30px;
+            }
+            .answersContainer {
+                display: flex;
+                justify-content: center;
+                padding-left: 0px;
+                li {
+                    flex-basis: 50%;
+                    max-width: 300px;
+                    color: $white;
+                    margin: 30px;
+                    &:hover {
+                        background-color: $turquoise;
+                    }
+                    &:focus {
+                        background-color: $turquoise;
+                    }
+                }
+            }
+        } 
+    } 
+}
+
+// TURN DISPLAY NONE BUT TO DISPLAY BLOCK WITH JS 
+.hiddenMain {
+    background-image: url(../assets/untuckedLounge.jpeg);
+        background-size: cover;
+        height: max(80vh, 900px);
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            .hiddenImgContainer, .hiddenButtonContainer, .hiddenLearnMoreContainer {
+                flex-basis: 100%;
+            }
+            img {
+                padding: 60px;
+            }
+            button {
+                font-size: 1.5rem;
+                color: $white;
+                border: none;
+                background-color: #59c9c5ac;
+                &:hover {
+                    background-color: $turquoise;
+                }
+                 &:focus {
+                    background-color: $turquoise;
+                }
+            }
+            p {
+                font-size: 2.5rem;
+                a {
+                    text-decoration: none;
+                    color: $white;
+                    text-shadow: 5px 5px 10px $pink;
+                    text-transform: uppercase;
+                    &:hover {
+                        color: $pink;
+                        text-shadow: 25px 25px 10px $hotPink;
+                    }
+                }
+            }            
+    }
+}
+   
