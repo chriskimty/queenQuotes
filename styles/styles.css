@@ -247,21 +247,6 @@ html {
   font-weight: normal;
 }
 @font-face {
-  font-family: "Helvetica Neue";
-  src: url("../fonts/helveticaNeue/helveticaNeueUltraLight.ttf");
-  font-weight: light;
-}
-@font-face {
-  font-family: "Helvetica Neue";
-  src: url("../fonts/helveticaNeue/helveticaNeueMediumExtended.ttf");
-  font-weight: normal;
-}
-@font-face {
-  font-family: "Helvetica Neue";
-  src: url("../fonts/helveticaNeue/helveticaNeueBlkExtObl.ttf");
-  font-weight: bold;
-}
-@font-face {
   font-family: "Noto Sans Mono";
   src: url("../fonts/notoSansMono/NotoSansMono-VariableFont_wdth,wght.ttf");
   font-weight: normal;
@@ -451,8 +436,9 @@ main .quiz .mainTextContainer .answersContainer li:focus {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
 }
-.hiddenMain .wrapper img {
+.hiddenMain .wrapper #hiddenImg {
   padding: 60px;
+  max-width: 500px;
 }
 .hiddenMain .wrapper button {
   font-size: 1.5rem;

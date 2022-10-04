@@ -52,8 +52,9 @@ main {
             .hiddenImgContainer, .hiddenButtonContainer, .hiddenLearnMoreContainer {
                 flex-basis: 100%;
             }
-            img {
+            #hiddenImg {
                 padding: 60px;
+                max-width: 500px;
             }
             button {
                 font-size: 1.5rem;
