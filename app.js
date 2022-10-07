@@ -1,87 +1,63 @@
-//     "id": 89,
-//     "name": 'Trixie Matel',
-//     "winner": false,
-//     "missCongeniality": false,
-//     "quote": 'Okay, calm down there public school.',
-//     "image_url": 'http://trixie-matel.com/213131.jpg'
-
-// Create an app object (dragApp)
+// Create an app object
 const app = {};
 
-// Base URL
-const url = new URL("http://www.nokeynoshade.party/api/queens/all");
+// DOM Elements
+app.quoteContainer = document.querySelector(".quoteContainer");
+app.correctAnswerContainer = document.querySelector(".option1");
+app.wrongAnswerContainer = document.querySelector(".option2");
+app.hiddenImg = document.querySelector("#hiddenImg");
 
-// Method: Randomizer function
-app.randomizer = function (array) {
-    return Math.floor(Math.random() * array.length)
-}; 
-
-// When the page loads (when app.init is called), call the method where the API will generate a randomized quote (property: quote) will appear in the .quoteContainer. 
-app.getRandomQuote = function () {
-    const quoteContainer = document.querySelector(".quoteContainer");
-    const correctAnswerContainer = document.querySelector(".option1");
-    const hiddenImg = document.querySelector('#hiddenImg');
-    fetch(url)
-        .then((apiPromise) => {
-            return apiPromise.json();
-        })
-        .then((data) => {
-            const randomIndex = app.randomizer(data)
-            return (quoteContainer.innerHTML = [data[randomIndex].quote]) && (correctAnswerContainer.innerHTML = [data[randomIndex].name]) && (hiddenImg.src = [data[randomIndex].image_url]);
-            // PROBLEM 1: Come back to this for error handling using conditionals so that if it is an empty string "", either get it to show a default quote that we picked, or move it to the next one, etc. (***On the API, the empty quote strings look like: quote: "\"\"")
-        }
-    );
+// Randomizer function to get a random queen index from the array 
+app.randomizer = function (queenArray) {
+  const randomIndex = Math.floor(Math.random() * queenArray.length);
+  return queenArray[randomIndex];
 };
 
-// When the page loads, call the method where the API will generate two randomized queen's names (property: name) will appear in the <li> .answersContainer.
-app.getRandomQueenName = function () {
-    const wrongAnswerContainer = document.querySelector(".option2");
-    
-    fetch(url)
-        .then((apiPromise) => {
-            return apiPromise.json();
-        })
-        .then((data) => {
-            const randomIndex = app.randomizer(data)
-            return wrongAnswerContainer.innerHTML = [data[randomIndex].name];
-            // PROBLEM 2: Need to add an if statement so that this random queen is not the same queen as the id of the 'random quote/random queen name' 
-        }
-            
-            // javascript shuffle array values
+// async await fetch request 
+app.getQueens = async function () {
+  const apiPromise = await fetch(
+    "http://www.nokeynoshade.party/api/queens/all"
+  );
+  const data = await apiPromise.json();
 
-        // PROBLEM 3: need to randomize the answers in the <li> so that the correct answer is not 
-        // IF the randomized quote generated = odd number id
-            // then, return: correctAnswerContainer = document.querySelector(".option1");
-            // the "incorrect answer" (randomized queen's name) MUST be an even id #
-            // then, return wrongAnswerContainer.innerHTML = a randomIndex of a queen with an even id#
+// variables to access a randomized queen index for the correct and wrong answers 
+  app.correctQueen = app.randomizer(data);
+  app.wrongQueen = app.randomizer(data);
 
+// regular expression to verify if the randomized queen index selected has a valid quote (! == "" || ! == ""\"\"")
+  const regExp = /[a-zA-Z]/;
+  //loop through the array until app.randomizer accesses a valid quote 
+  while (!regExp.test(app.correctQueen.quote)) {
+    app.correctQueen = app.randomizer(data);
+  }
+// Display the randomized queens properties onto the selected DOM elements 
+  app.quoteContainer.innerHTML = app.correctQueen.quote;
+  app.correctAnswerContainer.innerHTML = app.correctQueen.name;
+  app.hiddenImg.src = app.correctQueen.image_url;
+  app.wrongAnswerContainer.innerHTML = app.wrongQueen.name;
+};
 
-        // ELSE, the id of the random quote = even number,
-            // then, return: const correctAnswerContainer = document.querySelector(".option2");
-            // the "incorrect answer" (randomized queen's name) MUST be an odd id #  
-    );
-}
+// PROBLEM 1: create a solution to avoid the wrong answer to be in the same index as the correct answer. 
+    //Possible solution: Create a conditional in the app.wrongQueen variable which loops through the queen array until it gets a queen with a different index from the correct queen
 
-// addEventListener: once the user clicks on one of the <li> answers,
-// If they click the correct answer, the answer will turn green
+// PROBLEM 2: create a solution so that the order that the answers displayed in the <li> are randomized 
+    //Possible solution: find a way to display the answers on the <li> by increasing numerical order by index #
 
-// Else (if they click the incorrect answer), it will turn red
+// addEventListener: once the user clicks on one of the <li> answers:
+    // The .hiddenMain section (previously display: none) will display: block.
+    // In.hiddenMain, the user will be able to see the image of the queen that was the correct answer.
+    // The user will also be able to see a phrase confirming whether they selected the CORRECT or INCORRECT answer:
+        // Correct answer phrase: "You're a winner, baby"
+        // Incorrect answer phrase: "Good God, Get a Grip Girl."
+    //The user can interact with the .hiddenButtonContainer which contains the 'replay' button to replay the game.
+        //When the user presses the 'replay' button:
+            //the .hiddenMain section will display: none
+            // the page refreshes on the id #quizSection
 
-// The .hiddenMain section (previously display: none) will display: block. In .hiddenMain, the user will be able to see the .hiddenButtonContainer which contains the 'replay' button to replay the game. In this div, call the API (property: img_url)
-
-
-
-
-
-// addEventListener: when the user clicks the 'replay' button,
-
-// .hiddenMain will be hidden away again
-
-// The page is refreshed on the id #quizSection
-
+// Init function 
 app.init = function () {
-    app.getRandomQuote()
-    app.getRandomQueenName()
+  app.getQueens();
 };
 
+// Call the init function 
 app.init();
