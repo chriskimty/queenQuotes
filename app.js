@@ -3,61 +3,119 @@ const app = {};
 
 // DOM Elements
 app.quoteContainer = document.querySelector(".quoteContainer");
-app.correctAnswerContainer = document.querySelector(".option1");
-app.wrongAnswerContainer = document.querySelector(".option2");
+app.ulContainer = document.querySelector("#ulContainer");
 app.hiddenImg = document.querySelector("#hiddenImg");
+app.hiddenSection = document.querySelector(".hiddenMain");
+app.hiddenButton = document.querySelector(".hiddenButton");
+app.confirmationContainer = document.querySelector(".confirmationContainer");
 
-// Randomizer function to get a random queen index from the array 
+
+// randomizer function to get a random queen index from the array
 app.randomizer = function (queenArray) {
   const randomIndex = Math.floor(Math.random() * queenArray.length);
   return queenArray[randomIndex];
 };
 
-// async await fetch request 
+// async await fetch request
 app.getQueens = async function () {
   const apiPromise = await fetch(
     "http://www.nokeynoshade.party/api/queens/all"
   );
   const data = await apiPromise.json();
 
-// variables to access a randomized queen index for the correct and wrong answers 
-  app.correctQueen = app.randomizer(data);
-  app.wrongQueen = app.randomizer(data);
+  // variables to access two randomized queens index
+  app.option1 = app.randomizer(data);
+  app.option2 = app.randomizer(data);
 
-// regular expression to verify if the randomized queen index selected has a valid quote (! == "" || ! == ""\"\"")
+  // regular expression to verify if the randomized queen index selected has a valid quote (!== "" || !== "\"\"")
   const regExp = /[a-zA-Z]/;
-  //loop through the array until app.randomizer accesses a valid quote 
-  while (!regExp.test(app.correctQueen.quote)) {
-    app.correctQueen = app.randomizer(data);
+  //loop through the array until app.randomizer access a valid quote for option1 and option2
+  while (!regExp.test(app.option1.quote)) {
+    app.option1 = app.randomizer(data);
   }
-// Display the randomized queens properties onto the selected DOM elements 
-  app.quoteContainer.innerHTML = app.correctQueen.quote;
-  app.correctAnswerContainer.innerHTML = app.correctQueen.name;
-  app.hiddenImg.src = app.correctQueen.image_url;
-  app.wrongAnswerContainer.innerHTML = app.wrongQueen.name;
+  while (!regExp.test(app.option2.quote)) {
+    app.option2 = app.randomizer(data);
+  }
+
+  app.displayQueensData(app.option1, app.option2);
+  app.displayAnswers();
 };
 
-// PROBLEM 1: create a solution to avoid the wrong answer to be in the same index as the correct answer. 
-    //Possible solution: Create a conditional in the app.wrongQueen variable which loops through the queen array until it gets a queen with a different index from the correct queen
+  // Function to display the randomized queens properties onto the selected DOM Elements
+  app.displayAnswers = function () {
+  app.arrayOfQueens = [app.option1, app.option2];
+ 
+  //For each option create elements to display the randomized queen names onto the page 
+    app.arrayOfQueens.forEach(function (queenObject) {
+    listElement = document.createElement("li");
+    listElement.innerText = queenObject.name;
+    listElement.classList.add("button", "answers");
+    app.ulContainer.appendChild(listElement);
+  //Event Listener on the list elements to show hidden section
+      //Problem 1: figure out how to target the correctAnswer variable to target it for the different pharases 
+      //Problem 2: when buttons are clicked, the window should scroll down to the hiddenMain
+      //Problem 3: only allow the element <p> to be created once
+    listElement.addEventListener('click', function (e){
+      app.hiddenSection.style.display = "block"
+      correctPhrase = document.createElement("p");
+      correctPhrase.innerText = "You're a winner, baby";
+      app.confirmationContainer.appendChild(correctPhrase)
+    //if target = class rightAnswer, then show hiddenDiv + blurb "You're a winner, baby"
+      })
+  //else wrongAnswer, then  show hiddenDiv + blurb"Good God, Get a Grip Girl."  
+    })
+    // listElement.addEventListener('click', function (e) {
+    //     correctPhrase = document.createElement("p");
+    //     correctPhrase.innerText = "You're a winner, baby";
+    //   app.confirmationContainer.appendChild(correctPhrase)
+    //   console.log(e)
+    // })
+};
 
-// PROBLEM 2: create a solution so that the order that the answers displayed in the <li> are randomized 
-    //Possible solution: find a way to display the answers on the <li> by increasing numerical order by index #
+ // Function with if statement to designate the queen with the smaller index as the quote in question
+app.displayQueensData = function () {
+  if (app.option1.id < app.option2.id) {
+    app.quoteContainer.innerHTML = app.option1.quote;
+    app.hiddenImg.src = app.option1.image_url;
+    app.correctAnswer = app.option1.name;
+  } else {
+    app.quoteContainer.innerHTML = app.option2.quote;
+    app.hiddenImg.src = app.option2.image_url;
+    app.correctAnswer = app.option2.name;
+  }
+  console.log(app.correctAnswer)
+};
 
 // addEventListener: once the user clicks on one of the <li> answers:
-    // The .hiddenMain section (previously display: none) will display: block.
-    // In.hiddenMain, the user will be able to see the image of the queen that was the correct answer.
-    // The user will also be able to see a phrase confirming whether they selected the CORRECT or INCORRECT answer:
-        // Correct answer phrase: "You're a winner, baby"
-        // Incorrect answer phrase: "Good God, Get a Grip Girl."
-    //The user can interact with the .hiddenButtonContainer which contains the 'replay' button to replay the game.
-        //When the user presses the 'replay' button:
-            //the .hiddenMain section will display: none
-            // the page refreshes on the id #quizSection
+// The .hiddenMain section (previously display: none) will display: block.
+// In.hiddenMain, the user will be able to see the image of the queen that was the correct answer.
 
-// Init function 
-app.init = function () {
-  app.getQueens();
-};
 
-// Call the init function 
-app.init();
+// The user will also be able to see a phrase confirming whether they selected the CORRECT or INCORRECT answer:
+// Correct answer phrase: "You're a winner, baby"
+// Incorrect answer phrase: "Good God, Get a Grip Girl."
+//The user can interact with the .hiddenButtonContainer which contains the 'replay' button to replay the game.
+//When the user presses the 'replay' button:
+// //the .hiddenMain section will display: none
+// // the page refreshes on the id #quizSection
+
+// Function to run events
+app.events = function () {
+ app.hiddenButton.addEventListener('click', function (e){
+  //  app.hiddenSection.style.display = "none"
+   window.location.reload();
+   //Problem 4: Figure out how to keep the screen on the main quiz section
+ })
+//   window.addEventListener("load", (event) => {
+// })
+  }
+  
+
+  // init function
+  app.init = function () {
+    app.getQueens();
+    app.events();
+  };
+  
+  // call the init function
+  app.init();

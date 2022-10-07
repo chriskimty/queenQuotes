@@ -41,6 +41,7 @@ main {
 
 // TURN DISPLAY NONE BUT TO DISPLAY BLOCK WITH JS 
 .hiddenMain {
+    display: none;
     background-image: url(../assets/untuckedLounge.jpeg);
         background-size: cover;
         height: max(80vh, 900px);
@@ -83,4 +84,3 @@ main {
             }            
     }
 }
-   

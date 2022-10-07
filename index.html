@@ -33,10 +33,10 @@
             <div class="mainTextContainer">
                 <div class="wrapper">
                     <h3>Which QUEEN famously said...</h3>
-                    <h4 class="quoteContainer"></h4>
-                    <ul class="answersContainer">
-                        <li class="button option1"></li>
-                        <li class="button option2"></li>
+                    <h4 class="quoteContainer correctQueen"></h4>
+                    <ul class="answersContainer" id="ulContainer">
+                        <!-- <li class="button option1 answers" ></li>
+                                <li class="button option2 answers"></li> -->
                     </ul>
                 </div>
             </div>
@@ -44,9 +44,12 @@
 
         <div class="hiddenMain">
             <div class="wrapper">
-                <div class="hiddenImgContainer">
+                <div class="confirmationContainer">
+                    <!-- just a placeholder for <p> now because these will be generated vis JS -->
+                </div>
+                <div class="hiddenImgContainer correctQueen">
                     <img id="hiddenImg" src="" alt="Image of the Queen who said the quote">
-                    <!-- just a placeholder image for now because these will be generated via JS -->
+                    <!-- just a placeholder for <img> now because these will be generated vis JS -->
                 </div>
                 <div class="hiddenButtonContainer">
                     <button class=" button hiddenButton">Replay</button>
