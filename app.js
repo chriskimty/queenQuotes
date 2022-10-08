@@ -9,7 +9,6 @@ app.hiddenSection = document.querySelector(".hiddenMain");
 app.hiddenButton = document.querySelector(".hiddenButton");
 app.confirmationContainer = document.querySelector(".confirmationContainer");
 
-
 // randomizer function to get a random queen index from the array
 app.randomizer = function (queenArray) {
   const randomIndex = Math.floor(Math.random() * queenArray.length);
@@ -47,30 +46,36 @@ app.getQueens = async function () {
  
   //For each option create elements to display the randomized queen names onto the page 
     app.arrayOfQueens.forEach(function (queenObject) {
-    listElement = document.createElement("li");
-    listElement.innerText = queenObject.name;
-    listElement.classList.add("button", "answers");
-    app.ulContainer.appendChild(listElement);
+      listElement = document.createElement("li");
+      listElement.innerText = queenObject.name;
+      listElement.classList.add("button", "answers");
+      app.ulContainer.appendChild(listElement);
+      
   //Event Listener on the list elements to show hidden section
-      //Problem 1: figure out how to target the correctAnswer variable to target it for the different pharases 
-      //Problem 2: when buttons are clicked, the window should scroll down to the hiddenMain
+      //Problem 1: figure out how to target the correctAnswer variable to target it for the different pharases - DONE! 
+      //Problem 2: when buttons are clicked, the window should scroll down to the hiddenMain - DONE!
       //Problem 3: only allow the element <p> to be created once
-    listElement.addEventListener('click', function (e){
-      app.hiddenSection.style.display = "block"
-      correctPhrase = document.createElement("p");
-      correctPhrase.innerText = "You're a winner, baby";
-      app.confirmationContainer.appendChild(correctPhrase)
-    //if target = class rightAnswer, then show hiddenDiv + blurb "You're a winner, baby"
-      })
-  //else wrongAnswer, then  show hiddenDiv + blurb"Good God, Get a Grip Girl."  
-    })
-    // listElement.addEventListener('click', function (e) {
-    //     correctPhrase = document.createElement("p");
-    //     correctPhrase.innerText = "You're a winner, baby";
-    //   app.confirmationContainer.appendChild(correctPhrase)
-    //   console.log(e)
-    // })
-};
+      listElement.addEventListener('click', function (e) {
+        // alert(this.innerHTML);
+        e.preventDefault()
+        app.hiddenSection.style.display = "block";
+        app.hiddenSection.scrollIntoView({
+          behavior: 'smooth'
+        });
+  
+        if (this.innerHTML == app.correctAnswer) {
+          app.hiddenSection.style.display = "block";
+          displayPhrase = document.createElement("p");
+          displayPhrase.innerText = "Condragulations. You're a winner, baby!";
+          app.confirmationContainer.appendChild(displayPhrase);
+        } else {
+          displayPhrase = document.createElement("p");
+          displayPhrase.innerText = "Good God, Get a Grip Girl. Try again, hunty!";
+          app.confirmationContainer.appendChild(displayPhrase);
+        }
+      });
+    });
+  };
 
  // Function with if statement to designate the queen with the smaller index as the quote in question
 app.displayQueensData = function () {

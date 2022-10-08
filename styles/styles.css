@@ -227,50 +227,51 @@ html {
 }
 
 @font-face {
-  font-family: "Bauhaus93";
-  src: url("../fonts/bauhaus/bauhaus93.TTF");
+  font-family: "Helvetica Neue";
+  src: url("../fonts/helveticaNeue/helveticaNeueMediumExtended.ttf");
   font-weight: normal;
 }
 @font-face {
-  font-family: "Broadway Flat";
-  src: url("../fonts/broadway/broadwayFlatRegular.ttf");
-  font-weight: normal;
-}
-@font-face {
-  font-family: "Broadway Flat 3D";
-  src: url("../fonts/broadway/broadwayFlat3DRegular.ttf");
-  font-weight: normal;
-}
-@font-face {
-  font-family: "Chalet New York";
-  src: url("../fonts/chaletNewYork/chaletNewYorkNineteenSeventy.ttf");
-  font-weight: normal;
+  font-family: "Helvetica Neue Light";
+  src: url("../fonts/helveticaNeue/helveticaNeueUltraLight.ttf");
+  font-weight: light;
 }
 @font-face {
   font-family: "Noto Sans Mono";
   src: url("../fonts/notoSansMono/NotoSansMono-VariableFont_wdth,wght.ttf");
   font-weight: normal;
 }
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat/Montserrat-Regular.ttf");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat/Montserrat-ExtraBold.ttf");
+  font-weight: bolder;
+}
 html {
   font-size: 125%;
 }
 
 h1 {
-  font-family: "Noto Sans Mono";
+  font-family: "Montserrat";
   font-size: 6rem;
   color: #fff;
-  font-weight: lighter;
-}
-
-h2, h3, h4, h5, p {
-  font-family: "Helvetica Neue";
-  font-weight: lighter;
-  color: #fff;
+  font-weight: bolder;
 }
 
 h2 {
+  font-family: "Noto Sans Mono";
   line-height: 1.5;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+h3, h4, h5, p {
+  font-family: "Helvetica Neue";
+  color: #fff;
 }
 
 h3 {
@@ -281,12 +282,12 @@ h3 {
 
 h4 {
   line-height: 1.5;
-  font-size: 2.8rem;
+  font-size: 2.5rem;
 }
 
 .button a, .answersContainer li, button {
   text-decoration: none;
-  font-family: "Chalet New York";
+  font-family: "Helvetica Neue";
   color: #fff;
   font-size: 1.5rem;
 }
@@ -335,8 +336,49 @@ header {
   height: max(100vh, 1200px);
 }
 header .logoImg {
-  width: 15%;
-  margin-top: 30px;
+  width: max(15%, 170px);
+  margin-top: 50px;
+  color: #fff;
+}
+header .logoImg:hover {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
+}
+header .logoImg:focus {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
+}
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  70% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+}
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  70% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
 }
 
 .headerTextContainer {
@@ -353,14 +395,20 @@ header .logoImg {
           align-items: center;
   text-align: center;
 }
-.headerTextContainer h1 span {
-  font-style: italic;
-  font-weight: bold;
-  text-decoration: underline;
+.headerTextContainer h1 .rainbow {
+  background-image: -webkit-gradient(linear, right top, left top, from(#C16AF4), color-stop(#3D87F5), color-stop(#3DF5D0), color-stop(#88992B), color-stop(#C0852B), color-stop(#EB6A2C), to(#F53D3D));
+  background-image: linear-gradient(to left, #C16AF4, #3D87F5, #3DF5D0, #88992B, #C0852B, #EB6A2C, #F53D3D);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: #fff 5px 12px;
 }
 .headerTextContainer h2 {
-  border: 3px solid #fff;
+  background-color: rgba(77, 66, 73, 0.3882352941);
   padding: 20px;
+}
+.headerTextContainer h2 span {
+  white-space: nowrap;
 }
 .headerTextContainer .button {
   margin: 40px 0px;
@@ -368,11 +416,23 @@ header .logoImg {
 .headerTextContainer .button a {
   margin: 0 auto;
 }
+.headerTextContainer h3 {
+  font-size: 2rem;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  padding: 30px;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(229, 0, 124, 0.7455182757)), color-stop(58%, rgba(0, 218, 229, 0.1866947463)));
+  background-image: linear-gradient(90deg, rgba(229, 0, 124, 0.7455182757) 0%, rgba(0, 218, 229, 0.1866947463) 58%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: #fff 5px 5px;
+}
 
 main .quiz {
   background-image: url(../assets/mainImgOpt1.png);
   background-size: cover;
-  height: max(80vh, 900px);
+  height: 100vh;
 }
 main .quiz .mainTextContainer {
   display: -webkit-box;
@@ -386,12 +446,23 @@ main .quiz .mainTextContainer {
   text-align: center;
   padding-top: 80px;
 }
-main .quiz .mainTextContainer h3, main .quiz .mainTextContainer h4, main .quiz .mainTextContainer li {
-  border: 3px solid #fff;
+main .quiz .mainTextContainer h4, main .quiz .mainTextContainer li {
   background-color: rgba(77, 66, 73, 0.537254902);
+  font-family: "Noto Sans Mono";
+  font-weight: normal;
 }
-main .quiz .mainTextContainer h4 {
+main .quiz .mainTextContainer .quoteContainer {
   padding: 30px;
+  min-height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 main .quiz .mainTextContainer .answersContainer {
   display: -webkit-box;
@@ -406,6 +477,15 @@ main .quiz .mainTextContainer .answersContainer li {
   -ms-flex-preferred-size: 50%;
       flex-basis: 50%;
   max-width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #fff;
   margin: 30px;
 }
@@ -418,9 +498,9 @@ main .quiz .mainTextContainer .answersContainer li:focus {
 
 .hiddenMain {
   display: none;
-  background-image: url(../assets/untuckedLounge.jpeg);
+  background-image: url(../assets/ruPaulMainStage.jpeg);
   background-size: cover;
-  height: max(80vh, 900px);
+  height: 100vh;
 }
 .hiddenMain .wrapper {
   display: -webkit-box;
@@ -433,13 +513,23 @@ main .quiz .mainTextContainer .answersContainer li:focus {
           justify-content: center;
   text-align: center;
 }
+.hiddenMain .wrapper .confirmationContainer {
+  margin-top: 40px;
+  background-color: rgba(77, 66, 73, 0.537254902);
+}
+.hiddenMain .wrapper .confirmationContainer p {
+  font-size: 2rem;
+  padding: 0px 50px;
+}
 .hiddenMain .wrapper .hiddenImgContainer, .hiddenMain .wrapper .hiddenButtonContainer, .hiddenMain .wrapper .hiddenLearnMoreContainer {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
 }
 .hiddenMain .wrapper #hiddenImg {
-  padding: 60px;
-  max-width: 500px;
+  padding: 25px;
+  width: 50%;
+  max-width: 400px;
+  max-height: 80vh;
 }
 .hiddenMain .wrapper button {
   font-size: 1.5rem;
@@ -453,18 +543,43 @@ main .quiz .mainTextContainer .answersContainer li:focus {
 .hiddenMain .wrapper button:focus {
   background-color: #59c9c5;
 }
-.hiddenMain .wrapper p {
-  font-size: 2.5rem;
+.hiddenMain .wrapper .hiddenLearnMoreContainer p {
+  font-size: 1rem;
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
-.hiddenMain .wrapper p a {
+.hiddenMain .wrapper .hiddenLearnMoreContainer p a {
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 140px;
+  height: 140px;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: -600px;
+  background-color: rgba(229, 0, 122, 0.6509803922);
   text-decoration: none;
   color: #fff;
   text-shadow: 5px 5px 10px #ff5ed5;
-  text-transform: uppercase;
 }
-.hiddenMain .wrapper p a:hover {
-  color: #ff5ed5;
-  text-shadow: 25px 25px 10px #e5007c;
+.hiddenMain .wrapper .hiddenLearnMoreContainer p a:hover {
+  color: #59c9c5;
+  text-shadow: 20px 20px 10px #ff5ed5;
+}
+.hiddenMain .wrapper .hiddenLearnMoreContainer p a:focus {
+  color: #59c9c5;
+  text-shadow: 20px 20px 10px #ff5ed5;
 }
 
 footer .footerMainContainer {
@@ -481,26 +596,35 @@ footer .footerMainContainer {
       -ms-flex-align: center;
           align-items: center;
 }
-footer .footerMainContainer .ruPaulQuote h5 {
-  font-size: 2rem;
-  padding: 0px 80px;
+footer .footerMainContainer img {
+  max-width: 115%;
 }
-footer .footerMainContainer .ruPaulQuote h5 span {
+footer .footerMainContainer .footerTextContainer h5 {
+  font-size: clamp(1.5rem, 2.5vw, 4rem);
+  padding: 0px 80px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+footer .footerMainContainer .footerTextContainer h5 span {
   font-size: 1.2rem;
 }
-footer .footerMainContainer .socialMedias ul {
+footer .footerMainContainer .footerTextContainer .socialMedias {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-right: 30px;
 }
-footer .footerMainContainer .socialMedias ul li {
+footer .footerMainContainer .footerTextContainer .socialMedias li {
   margin: 10px;
   font-size: 2rem;
 }
-footer .footerMainContainer .socialMedias ul li a {
+footer .footerMainContainer .footerTextContainer .socialMedias li a {
   color: #fff;
 }
-footer .footerMainContainer .socialMedias ul li a:hover {
+footer .footerMainContainer .footerTextContainer .socialMedias li a:hover {
   color: #59c9c5;
 }
 footer .footerContributions {

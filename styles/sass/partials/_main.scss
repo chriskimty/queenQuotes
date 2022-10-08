@@ -2,21 +2,33 @@
 
 main {
     .quiz {
-       background-image: url(../assets/mainImgOpt1.png);
+        background-image: url(../assets/mainImgOpt1.png);
         background-size: cover;
-        height: max(80vh, 900px);
+        height: 100vh;
         .mainTextContainer {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             text-align: center;
             padding-top: 80px;
-            h3, h4, li {
-                border: 3px solid $white;
+            h4, li {
                 background-color: #4d424989;
+                font-family: $subFont;
+                font-weight: normal;
             }
-            h4 {
+            .quoteContainer {
                 padding: 30px;
+                min-height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            // how to make before and after on the actual text rather than the container when using flexbox? 
+                // &::before {
+                //     content: '"';
+                // } 
+                // &::after {
+                //     content: '"';
+                // }
             }
             .answersContainer {
                 display: flex;
@@ -25,6 +37,9 @@ main {
                 li {
                     flex-basis: 50%;
                     max-width: 300px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     color: $white;
                     margin: 30px;
                     &:hover {
@@ -39,23 +54,32 @@ main {
     } 
 }
 
-// TURN DISPLAY NONE BUT TO DISPLAY BLOCK WITH JS 
 .hiddenMain {
     display: none;
-    background-image: url(../assets/untuckedLounge.jpeg);
+    background-image: url(../assets/ruPaulMainStage.jpeg);
         background-size: cover;
-        height: max(80vh, 900px);
+        height: 100vh;
         .wrapper {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             text-align: center;
+            .confirmationContainer {
+                margin-top: 40px;
+                background-color: #4d424989; 
+                p {
+                    font-size: 2rem;
+                    padding: 0px 50px;  
+                }
+            }
             .hiddenImgContainer, .hiddenButtonContainer, .hiddenLearnMoreContainer {
                 flex-basis: 100%;
             }
             #hiddenImg {
-                padding: 60px;
-                max-width: 500px;
+                padding: 25px;
+                width: 50%;
+                max-width: 400px;
+                max-height: 80vh;
             }
             button {
                 font-size: 1.5rem;
@@ -69,18 +93,36 @@ main {
                     background-color: $turquoise;
                 }
             }
-            p {
-                font-size: 2.5rem;
-                a {
+            // placement of this container is a bit awkward right now. Any suggestions on where it should go? 
+            .hiddenLearnMoreContainer {
+               p {
+                font-size: 1rem;
+                text-align: right;
+                display: flex;
+                justify-content: flex-end;
+                a { 
+                    border-radius: 50%;
+                    display: flex;
+                    width: 140px;
+                    height: 140px;
+                    text-align: center;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: -600px;
+                    background-color: #e5007aa6;
                     text-decoration: none;
                     color: $white;
                     text-shadow: 5px 5px 10px $pink;
-                    text-transform: uppercase;
                     &:hover {
-                        color: $pink;
-                        text-shadow: 25px 25px 10px $hotPink;
+                        color: $turquoise;
+                        text-shadow: 20px 20px 10px $pink;
+                    }
+                    &:focus {
+                        color: $turquoise;
+                        text-shadow: 20px 20px 10px $pink;
                     }
                 }
-            }            
+            }         
+        }        
     }
 }
