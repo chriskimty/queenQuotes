@@ -13,6 +13,7 @@ app.confirmationContainer = document.querySelector(".confirmationContainer");
 app.randomizer = function (queenArray) {
   const randomIndex = Math.floor(Math.random() * queenArray.length);
   return queenArray[randomIndex];
+
 };
 
 // async await fetch request
@@ -78,6 +79,7 @@ app.getQueens = async function () {
   };
 
  // Function with if statement to designate the queen with the smaller index as the quote in question
+
 app.displayQueensData = function () {
   if (app.option1.id < app.option2.id) {
     app.quoteContainer.innerHTML = app.option1.quote;
@@ -88,6 +90,7 @@ app.displayQueensData = function () {
     app.hiddenImg.src = app.option2.image_url;
     app.correctAnswer = app.option2.name;
   }
+
   console.log(app.correctAnswer)
 };
 
