@@ -7,20 +7,23 @@ footer {
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
-        .ruPaulQuote {
+        img {
+            max-width: 115%;
+        }
+        .footerTextContainer {
             h5 {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, 2.5vw, 4rem); 
                 padding: 0px 80px;
+                margin-top: 30px;
+                margin-bottom: 20px;
                 span {
                     font-size: 1.2rem;
                 }
             }
-        }
-        .socialMedias {
-            // this looks kind of awkward so we could move it later 
-            ul {
+            .socialMedias {
                 display: flex;
-                
+                justify-content: flex-end;
+                margin-right: 30px;
                 li {
                     margin: 10px;
                     font-size: 2rem;
@@ -34,12 +37,13 @@ footer {
             }   
         }
     }
+    
     .footerContributions {
         background-color: $black;
         text-align: center;
         padding: 12px;
         p {
-            font-family: $logoFont;
+            font-family: $subFont;
             letter-spacing: 0.8px;
             font-size: 0.8rem;
             line-height: 10px;

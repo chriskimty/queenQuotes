@@ -5,28 +5,57 @@ header {
     background-position: top center;
     background-size: cover;
     height: max(100vh, 1200px);
-
     .logoImg {
-        width: 15%;
-        margin-top: 30px;
-        // should put some kind of a fun animation on here! 
+        width: max(15%, 170px);
+        margin-top: 50px;
+        color: $white;
+        &:hover{
+           transform: scale(1);
+	        animation: pulse 1s infinite;  
+        }
+         &:focus{
+           transform: scale(1);
+	        animation: pulse 1s infinite;  
+        }   
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+            }
+
+            70% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0.95);
+            }
+        }
     }
 }
-
 .headerTextContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     text-align: center;
-    h1 span {
-        font-style: italic;
-        font-weight: bold;
-        text-decoration: underline;
+
+    h1 {
+      .rainbow {
+        background-image: linear-gradient(to left, #C16AF4, #3D87F5, #3DF5D0, #88992B, #C0852B, #EB6A2C, #F53D3D);
+        background-clip: text;   
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: $white 5px 12px;
+        }
     }
+    
     h2 {
-        border: 3px solid $white;
+        // border: 3px solid $white;
+        background-color: #4d424963;
         padding: 20px;
+        span {
+            white-space: nowrap;
+        }
     }
     .button {
         margin: 40px 0px;
@@ -34,5 +63,15 @@ header {
             margin: 0 auto;
         }
     }
-    
+
+    h3 {
+        font-size: 2rem;
+        flex-basis: 100%;
+        padding: 30px;
+        background-image: linear-gradient(90deg, rgba(229,0,124,0.7455182756696428) 0%, rgba(0,218,229,0.18669474625787819) 58%);
+        background-clip: text;   
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: $white 5px 5px;
+        }
 }

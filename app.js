@@ -13,6 +13,7 @@ app.confirmationContainer = document.querySelector(".confirmationContainer");
 app.randomizer = function (queenArray) {
   const randomIndex = Math.floor(Math.random() * queenArray.length);
   return queenArray[randomIndex];
+
 };
 
 // async await fetch request
@@ -40,38 +41,45 @@ app.getQueens = async function () {
   app.displayAnswers();
 };
 
-// Function to display the randomized queens properties onto the selected DOM Elements
-app.displayAnswers = function () {
+  // Function to display the randomized queens properties onto the selected DOM Elements
+  app.displayAnswers = function () {
   app.arrayOfQueens = [app.option1, app.option2];
-
-  //For each option create elements to display the randomized queen names onto the page
-  app.arrayOfQueens.forEach(function (queenObject) {
-    listElement = document.createElement("li");
-    listElement.innerText = queenObject.name;
-    listElement.classList.add("button", "answers");
-    app.ulContainer.appendChild(listElement);
-    //Event Listener on the list elements to show hidden section
-    //Problem 1: figure out how to target the correctAnswer variable to target it for the different pharases
-    //Problem 2: when buttons are clicked, the window should scroll down to the hiddenMain
-    //Problem 3: only allow the element <p> to be created once
-    listElement.addEventListener("click", function (e) {
-      // alert(this.innerHTML);
-      if (this.innerHTML == app.correctAnswer) {
+ 
+  //For each option create elements to display the randomized queen names onto the page 
+    app.arrayOfQueens.forEach(function (queenObject) {
+      listElement = document.createElement("li");
+      listElement.innerText = queenObject.name;
+      listElement.classList.add("button", "answers");
+      app.ulContainer.appendChild(listElement);
+      
+  //Event Listener on the list elements to show hidden section
+      //Problem 1: figure out how to target the correctAnswer variable to target it for the different pharases - DONE! 
+      //Problem 2: when buttons are clicked, the window should scroll down to the hiddenMain - DONE!
+      //Problem 3: only allow the element <p> to be created once
+      listElement.addEventListener('click', function (e) {
+        // alert(this.innerHTML);
+        e.preventDefault()
         app.hiddenSection.style.display = "block";
-        correctPhrase = document.createElement("p");
-        correctPhrase.innerText = "You're a winner, baby!";
-        app.confirmationContainer.appendChild(correctPhrase);
-      } else {
-        app.hiddenSection.style.display = "block";
-        correctPhrase = document.createElement("p");
-        correctPhrase.innerText = "Wrong answer, baby!";
-        app.confirmationContainer.appendChild(correctPhrase);
-      }
+        app.hiddenSection.scrollIntoView({
+          behavior: 'smooth'
+        });
+  
+        if (this.innerHTML == app.correctAnswer) {
+          app.hiddenSection.style.display = "block";
+          displayPhrase = document.createElement("p");
+          displayPhrase.innerText = "Condragulations. You're a winner, baby!";
+          app.confirmationContainer.appendChild(displayPhrase);
+        } else {
+          displayPhrase = document.createElement("p");
+          displayPhrase.innerText = "Good God, Get a Grip Girl. Try again, hunty!";
+          app.confirmationContainer.appendChild(displayPhrase);
+        }
+      });
     });
-  });
-};
+  };
 
-// Function with if statement to designate the queen with the smaller index as the quote in question
+ // Function with if statement to designate the queen with the smaller index as the quote in question
+
 app.displayQueensData = function () {
   if (app.option1.id < app.option2.id) {
     app.quoteContainer.innerHTML = app.option1.quote;
@@ -82,12 +90,14 @@ app.displayQueensData = function () {
     app.hiddenImg.src = app.option2.image_url;
     app.correctAnswer = app.option2.name;
   }
-  console.log(app.correctAnswer);
+
+  console.log(app.correctAnswer)
 };
 
 // addEventListener: once the user clicks on one of the <li> answers:
 // The .hiddenMain section (previously display: none) will display: block.
 // In.hiddenMain, the user will be able to see the image of the queen that was the correct answer.
+
 
 // The user will also be able to see a phrase confirming whether they selected the CORRECT or INCORRECT answer:
 // Correct answer phrase: "You're a winner, baby"
@@ -99,20 +109,21 @@ app.displayQueensData = function () {
 
 // Function to run events
 app.events = function () {
-  app.hiddenButton.addEventListener("click", function (e) {
-    //  app.hiddenSection.style.display = "none"
-    window.location.reload();
-    //Problem 4: Figure out how to keep the screen on the main quiz section
-  });
-  //   window.addEventListener("load", (event) => {
-  // })
-};
+ app.hiddenButton.addEventListener('click', function (e){
+  //  app.hiddenSection.style.display = "none"
+   window.location.reload();
+   //Problem 4: Figure out how to keep the screen on the main quiz section
+ })
+//   window.addEventListener("load", (event) => {
+// })
+  }
+  
 
-// init function
-app.init = function () {
-  app.getQueens();
-  app.events();
-};
-
-// call the init function
-app.init();
+  // init function
+  app.init = function () {
+    app.getQueens();
+    app.events();
+  };
+  
+  // call the init function
+  app.init();
