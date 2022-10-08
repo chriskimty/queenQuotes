@@ -417,6 +417,7 @@ main .quiz .mainTextContainer .answersContainer li:focus {
 }
 
 .hiddenMain {
+  display: none;
   background-image: url(../assets/untuckedLounge.jpeg);
   background-size: cover;
   height: max(80vh, 900px);
