@@ -446,7 +446,8 @@ main .quiz .mainTextContainer {
   text-align: center;
   padding-top: 80px;
 }
-main .quiz .mainTextContainer h4, main .quiz .mainTextContainer li {
+main .quiz .mainTextContainer h4,
+main .quiz .mainTextContainer li {
   background-color: rgba(77, 66, 73, 0.537254902);
   font-family: "Noto Sans Mono";
   font-weight: normal;
@@ -463,6 +464,12 @@ main .quiz .mainTextContainer .quoteContainer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+main .quiz .mainTextContainer .quoteContainer::before {
+  content: '"';
+}
+main .quiz .mainTextContainer .quoteContainer::after {
+  content: '"';
 }
 main .quiz .mainTextContainer .answersContainer {
   display: -webkit-box;
@@ -521,7 +528,9 @@ main .quiz .mainTextContainer .answersContainer li:focus {
   font-size: 2rem;
   padding: 0px 50px;
 }
-.hiddenMain .wrapper .hiddenImgContainer, .hiddenMain .wrapper .hiddenButtonContainer, .hiddenMain .wrapper .hiddenLearnMoreContainer {
+.hiddenMain .wrapper .hiddenImgContainer,
+.hiddenMain .wrapper .hiddenButtonContainer,
+.hiddenMain .wrapper .hiddenLearnMoreContainer {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
 }
