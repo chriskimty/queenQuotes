@@ -9,6 +9,7 @@ app.hiddenSection = document.querySelector(".hiddenMain");
 app.hiddenButton = document.querySelector(".hiddenButton");
 app.confirmationContainer = document.querySelector(".confirmationContainer");
 app.quizSection = document.querySelector("#quizSection");
+app.startGame = document.querySelector(".startGame");
 
 // randomizer function to get a random queen index from the array
 app.randomizer = function (queenArray) {
@@ -38,8 +39,9 @@ app.getQueens = async function () {
     app.option2 = app.randomizer(data);
   }
     app.displayQueensData(app.option1, app.option2);
+    
     } catch (err) {
-      alert(err);
+    alert("Something went wrong. Please check your network connection and try again.", err);
     }
   app.displayAnswers();
 };
@@ -62,7 +64,7 @@ app.displayAnswers = function () {
       app.hiddenSection.style.display = "block";
       app.hiddenSection.scrollIntoView({
         behavior: "smooth",
-      });
+      })
 
       //Messages are displayed according to the answer chosen
       if (this.innerHTML == app.correctAnswer) {
@@ -110,6 +112,13 @@ app.events = function () {
     e.preventDefault()
     window.location.reload()
     window.location.assign('index.html#quizSection')
+  });
+
+  app.startGame.addEventListener("click", function (e) {
+    e.preventDefault()
+    app.quizSection.scrollIntoView({
+      behavior: "smooth"
+    });
   });
 };
 
