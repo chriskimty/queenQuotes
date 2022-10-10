@@ -92,15 +92,14 @@ main {
     .hiddenLearnMoreContainer {
       flex-basis: 100%;
     }
-
     .hiddenImgContainer {
-      width: 80%;
-      max-width: 665px;
-      min-width: 320px;
-      padding: 5%;
+      margin-top: 20px;
       margin-bottom: 20px;
     }
     #hiddenImg {
+      width: 80%;
+      max-width: 665px;
+      min-width: 320px;
       object-fit: cover;
       border-radius: 2%;
       background-color: none;

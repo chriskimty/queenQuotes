@@ -572,13 +572,13 @@ main .quiz .mainTextContainer .answersContainer li:focus {
       flex-basis: 100%;
 }
 .hiddenMain .wrapper .hiddenImgContainer {
-  width: 80%;
-  max-width: 665px;
-  min-width: 320px;
-  padding: 5%;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .hiddenMain .wrapper #hiddenImg {
+  width: 80%;
+  max-width: 665px;
+  min-width: 320px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 2%;
