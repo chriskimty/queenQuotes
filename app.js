@@ -35,7 +35,7 @@ app.getQueens = async function () {
   while (!regExp.test(app.option1.quote)) {
     app.option1 = app.randomizer(data);
   }
-  while (!regExp.test(app.option2.quote)) {
+  while (!regExp.test(app.option2.quote) || app.option2 === app.option1) {
     app.option2 = app.randomizer(data);
   }
     app.displayQueensData(app.option1, app.option2);
@@ -58,13 +58,14 @@ app.displayAnswers = function () {
     app.ulContainer.appendChild(listElement);
 
     //Event Listener on the list elements (answer options) to display the hidden section
-    //*We might want to namespace this so all the events are in the same place? 
     listElement.addEventListener("click", function handler(e) {
       e.preventDefault()
       app.hiddenSection.style.display = "block";
       app.hiddenSection.scrollIntoView({
-        behavior: "smooth",
+        behavior: "smooth"
       })
+      //Once one of the options are clicked, disable pointer for both options
+      app.ulContainer.style.pointerEvents = "none"
 
       //Messages are displayed according to the answer chosen
       if (this.innerHTML == app.correctAnswer) {
@@ -78,16 +79,7 @@ app.displayAnswers = function () {
         displayPhrase.innerText = "Good God, Get a Grip Girl. Try again, hunty!";
         app.confirmationContainer.appendChild(displayPhrase)
       }
-      e.currentTarget.removeEventListener(e.type,handler)
-      //both of these (^this one, and the { once: true } below) achieve the same thing, but is not ideal because we could still click the OTHER button since we have a conditional.
-    // }, { once: true });
-      //also tried the below and some other disable = true, but does not work. Wondering if maybe we need to explore disabling the 'append Child' or the creation of a new Element once clicked, but was not able to find yet. Again, it might be an issue because we have a conditional. Most of the resources pertained to having a SINGLE submit button rather than two. Alternatively, we could add a "submit" button to submit answers but that might make us change the code again so.... 
-      // app.answers = document.querySelectorAll(".answers");
-      // const disableButton = () => {
-      //   app.answers.disabled = true;
-      // }
-      // app.answers.addEventListener("click", disableButton);
-  });
+    });
   });
 };
 
@@ -102,8 +94,6 @@ app.displayQueensData = function () {
     app.hiddenImg.src = app.option2.image_url;
     app.correctAnswer = app.option2.name;
   }
-  //Remove this before submission!
-  // console.log(app.correctAnswer);
 };
 
 // Function to run events

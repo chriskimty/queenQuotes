@@ -18,17 +18,9 @@ header {
 	        animation: pulse 1s infinite;  
         }   
         @keyframes pulse {
-            0% {
-                transform: scale(0.95);
-            }
-
-            70% {
-                transform: scale(1);
-            }
-
-            100% {
-                transform: scale(0.95);
-            }
+            0% {transform: scale(0.95);}
+            70% {transform: scale(1);}
+            100% {transform: scale(0.95);}
         }
     }
 }
@@ -45,17 +37,14 @@ header {
         background-clip: text;   
         -webkit-background-clip: text;
         color: transparent;
-        // text-shadow: $white 5px 12px;
         text-shadow: $white 4px 5px;
         }
     }
-    
     h2 {
         background-color: #4d424963;
         padding: 20px;
         border-radius: 0.25em;
         span {
-            // white-space: nowrap;
             text-transform: capitalize;
         }
     }
