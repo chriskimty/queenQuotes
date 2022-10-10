@@ -9,6 +9,7 @@ app.hiddenSection = document.querySelector(".hiddenMain");
 app.hiddenButton = document.querySelector(".hiddenButton");
 app.confirmationContainer = document.querySelector(".confirmationContainer");
 app.quizSection = document.querySelector("#quizSection");
+app.startGame = document.querySelector(".startGame");
 
 // randomizer function to get a random queen index from the array
 app.randomizer = function (queenArray) {
@@ -18,11 +19,12 @@ app.randomizer = function (queenArray) {
 
 // async await fetch request
 app.getQueens = async function () {
-  const apiPromise = await fetch(
+  try {
+   const apiPromise = await fetch(
     "http://www.nokeynoshade.party/api/queens/all"
   );
-  const data = await apiPromise.json();
-
+  const data = await apiPromise.json(); 
+ 
   // variables to access two randomized queens index
   app.option1 = app.randomizer(data);
   app.option2 = app.randomizer(data);
@@ -36,8 +38,11 @@ app.getQueens = async function () {
   while (!regExp.test(app.option2.quote)) {
     app.option2 = app.randomizer(data);
   }
-
-  app.displayQueensData(app.option1, app.option2);
+    app.displayQueensData(app.option1, app.option2);
+    
+    } catch (err) {
+    alert("Something went wrong. Please check your network connection and try again.", err);
+    }
   app.displayAnswers();
 };
 
@@ -52,28 +57,37 @@ app.displayAnswers = function () {
     listElement.classList.add("button", "answers");
     app.ulContainer.appendChild(listElement);
 
-    //Event Listener on the list elements to show hidden section
-    listElement.addEventListener("click", function (e) {
-      // alert(this.innerHTML);
-      e.preventDefault();
+    //Event Listener on the list elements (answer options) to display the hidden section
+    //*We might want to namespace this so all the events are in the same place? 
+    listElement.addEventListener("click", function handler(e) {
+      e.preventDefault()
       app.hiddenSection.style.display = "block";
       app.hiddenSection.scrollIntoView({
         behavior: "smooth",
-      });
+      })
 
+      //Messages are displayed according to the answer chosen
       if (this.innerHTML == app.correctAnswer) {
         app.hiddenSection.style.display = "block";
         displayPhrase = document.createElement("p");
         displayPhrase.innerText = "Condragulations. You're a winner, baby!";
-        app.confirmationContainer.appendChild(displayPhrase);
+        app.confirmationContainer.appendChild(displayPhrase)
+        
       } else {
         displayPhrase = document.createElement("p");
-        displayPhrase.innerText =
-          "Good God, Get a Grip Girl. Try again, hunty!";
-        app.confirmationContainer.appendChild(displayPhrase);
-        
+        displayPhrase.innerText = "Good God, Get a Grip Girl. Try again, hunty!";
+        app.confirmationContainer.appendChild(displayPhrase)
       }
-    });
+      e.currentTarget.removeEventListener(e.type,handler)
+      //both of these (^this one, and the { once: true } below) achieve the same thing, but is not ideal because we could still click the OTHER button since we have a conditional.
+    // }, { once: true });
+      //also tried the below and some other disable = true, but does not work. Wondering if maybe we need to explore disabling the 'append Child' or the creation of a new Element once clicked, but was not able to find yet. Again, it might be an issue because we have a conditional. Most of the resources pertained to having a SINGLE submit button rather than two. Alternatively, we could add a "submit" button to submit answers but that might make us change the code again so.... 
+      // app.answers = document.querySelectorAll(".answers");
+      // const disableButton = () => {
+      //   app.answers.disabled = true;
+      // }
+      // app.answers.addEventListener("click", disableButton);
+  });
   });
 };
 
@@ -88,16 +102,22 @@ app.displayQueensData = function () {
     app.hiddenImg.src = app.option2.image_url;
     app.correctAnswer = app.option2.name;
   }
-
-  console.log(app.correctAnswer);
+  //Remove this before submission!
+  // console.log(app.correctAnswer);
 };
 
 // Function to run events
 app.events = function () {
   app.hiddenButton.addEventListener("click", function (e) {
-    window.location.reload();
+    e.preventDefault()
+    window.location.reload()
+    window.location.assign('index.html#quizSection')
+  });
+
+  app.startGame.addEventListener("click", function (e) {
+    e.preventDefault()
     app.quizSection.scrollIntoView({
-      behavior: "smooth",
+      behavior: "smooth"
     });
   });
 };
