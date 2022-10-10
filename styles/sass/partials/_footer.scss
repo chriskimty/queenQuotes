@@ -11,18 +11,24 @@ footer {
             max-width: 100%;
         }
         .footerTextContainer {
+            display: flex;
             h5 {
                 font-size: clamp(1.1rem, 2.5vw, 4rem); 
                 padding: 0px 5%;
                 margin-top: 30px;
                 margin-bottom: 20px;
                 span {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    margin-top: 10px;
                     font-size: clamp(1rem, 5vw, 1.2rem);
                 }
             }
             .socialMedias {
                 display: flex;
                 justify-content: flex-end;
+                align-items: end;
                 margin-right: 30px;
                 li {
                     margin: 10px;

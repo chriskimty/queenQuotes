@@ -1,18 +1,5 @@
 @use "variables" as *;
 
-@media (max-width: 1000px) {
-    .hiddenLearnMoreContainer {
-        bottom: 2%;
-        right: 2%;  
-        a {
-            border-radius: 2%;
-            width: 140px;
-            height: 1rem;
-            background-color: #e5007aa6;
-        }
-    }
-}
-
 @media (max-width: 700px) {
   header {
     max-width: 100%;

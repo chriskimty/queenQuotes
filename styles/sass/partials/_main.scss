@@ -24,6 +24,7 @@ main {
         align-items: center;
         justify-content: center;
         position: relative;
+        border-radius: 0.25em;
         &::before {
           content: open-quote;
           position: absolute;
@@ -51,6 +52,7 @@ main {
           justify-content: center;
           align-items: center;
           color: $white;
+          border-radius: 0.25em;
           margin: clamp(10px, 2vw, 30px);
           &:hover {
             background-color: $turquoise;
@@ -78,7 +80,8 @@ main {
     text-align: center;
     .confirmationContainer {
       margin-top: 40px;
-      background-color: #4d424989;
+      background-color: #675c6389;
+      border-radius: 0.25em;
       p {
         font-size: clamp(1.1rem, 3vw, 2rem);
         padding: 0px 50px;
