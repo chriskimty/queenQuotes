@@ -573,7 +573,7 @@ main .quiz .mainTextContainer .answersContainer li:focus {
 }
 .hiddenMain .wrapper .hiddenImgContainer {
   width: 80%;
-  max-width: 550px;
+  max-width: 665px;
   min-width: 320px;
   padding: 5%;
   margin-bottom: 20px;
