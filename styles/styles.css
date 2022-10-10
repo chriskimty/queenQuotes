@@ -257,7 +257,7 @@ html {
 
 h1 {
   font-family: "Montserrat";
-  font-size: 6rem;
+  font-size: clamp(2.7rem, 9vw, 6rem);
   color: #fff;
   font-weight: bolder;
 }
@@ -265,7 +265,7 @@ h1 {
 h2 {
   font-family: "Noto Sans Mono";
   line-height: 1.5;
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
   color: #fff;
 }
 
@@ -276,20 +276,20 @@ h3, h4, h5, p {
 
 h3 {
   line-height: 1.5;
-  font-size: 3.5rem;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
   margin: 0 auto;
 }
 
 h4 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   line-height: 1.5;
-  font-size: 2.5rem;
 }
 
 .button a, .answersContainer li, button {
   text-decoration: none;
   font-family: "Helvetica Neue";
   color: #fff;
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
 }
 
 .wrapper {
@@ -306,8 +306,6 @@ img {
 }
 
 .button {
-  color: #ff5ed5;
-  background-color: rgba(229, 0, 122, 0.3843137255);
   padding: 18px 36px;
   font-size: 1rem;
   line-height: 32px;
@@ -316,6 +314,7 @@ img {
   cursor: pointer;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  border-radius: 0.25em;
 }
 .button:hover {
   background-color: rgba(229, 0, 122, 0.7058823529);
@@ -329,8 +328,8 @@ ul {
 }
 
 header {
-  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url(../assets/werkRoom.jpeg);
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../assets/werkRoom.jpeg);
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.4))), url(../assets/confessional1.jpeg);
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../assets/confessional1.jpeg);
   background-position: top center;
   background-size: cover;
   height: max(100vh, 1200px);
@@ -394,6 +393,7 @@ header .logoImg:focus {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+  padding-top: 5%;
 }
 .headerTextContainer h1 .rainbow {
   background-image: -webkit-gradient(linear, right top, left top, from(#C16AF4), color-stop(#3D87F5), color-stop(#3DF5D0), color-stop(#88992B), color-stop(#C0852B), color-stop(#EB6A2C), to(#F53D3D));
@@ -401,20 +401,43 @@ header .logoImg:focus {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow: #fff 5px 12px;
+  text-shadow: #fff 4px 5px;
 }
 .headerTextContainer h2 {
   background-color: rgba(77, 66, 73, 0.3882352941);
   padding: 20px;
+  border-radius: 0.25em;
 }
 .headerTextContainer h2 span {
-  white-space: nowrap;
+  text-transform: capitalize;
 }
 .headerTextContainer .button {
   margin: 40px 0px;
+  background-color: none;
+  border: 2px solid yellow;
+  text-shadow: 0 0 0.125em hsla(0deg, 0%, 100%, 0.5), 0 0 0.8em yellow;
+  -webkit-box-shadow: inset 0 0 0.9em 0 yellow, 0 0 0.8em 0 yellow;
+          box-shadow: inset 0 0 0.9em 0 yellow, 0 0 0.8em 0 yellow;
+  position: relative;
+}
+.headerTextContainer .button::before {
+  content: "";
+  position: absolute;
+  background: yellow;
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  -webkit-transform: perspective(3em) rotateX(45deg);
+          transform: perspective(3em) rotateX(45deg);
+  -webkit-filter: blur(1em);
+          filter: blur(1em);
+  opacity: 0.5;
 }
 .headerTextContainer .button a {
+  color: yellow;
   margin: 0 auto;
+  font-size: 1.2rem;
 }
 .headerTextContainer h3 {
   font-size: 2rem;
@@ -426,13 +449,13 @@ header .logoImg:focus {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow: #fff 5px 5px;
+  text-shadow: #fff 2px 2px;
 }
 
 main .quiz {
   background-image: url(../assets/mainImgOpt1.png);
   background-size: cover;
-  height: 100vh;
+  min-height: 105vh;
 }
 main .quiz .mainTextContainer {
   display: -webkit-box;
@@ -464,12 +487,22 @@ main .quiz .mainTextContainer .quoteContainer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: relative;
+  border-radius: 0.25em;
 }
 main .quiz .mainTextContainer .quoteContainer::before {
-  content: '"';
+  content: open-quote;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: clamp(3rem, 5vw, 4rem);
 }
 main .quiz .mainTextContainer .quoteContainer::after {
-  content: '"';
+  content: close-quote;
+  position: absolute;
+  bottom: -5%;
+  right: 0;
+  font-size: clamp(3rem, 5vw, 4rem);
 }
 main .quiz .mainTextContainer .answersContainer {
   display: -webkit-box;
@@ -494,7 +527,8 @@ main .quiz .mainTextContainer .answersContainer li {
       -ms-flex-align: center;
           align-items: center;
   color: #fff;
-  margin: 30px;
+  border-radius: 0.25em;
+  margin: clamp(10px, 2vw, 30px);
 }
 main .quiz .mainTextContainer .answersContainer li:hover {
   background-color: #59c9c5;
@@ -507,7 +541,9 @@ main .quiz .mainTextContainer .answersContainer li:focus {
   display: none;
   background-image: url(../assets/ruPaulMainStage.jpeg);
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 5%;
 }
 .hiddenMain .wrapper {
   display: -webkit-box;
@@ -522,10 +558,11 @@ main .quiz .mainTextContainer .answersContainer li:focus {
 }
 .hiddenMain .wrapper .confirmationContainer {
   margin-top: 40px;
-  background-color: rgba(77, 66, 73, 0.537254902);
+  background-color: rgba(103, 92, 99, 0.537254902);
+  border-radius: 0.25em;
 }
 .hiddenMain .wrapper .confirmationContainer p {
-  font-size: 2rem;
+  font-size: clamp(1.1rem, 3vw, 2rem);
   padding: 0px 50px;
 }
 .hiddenMain .wrapper .hiddenImgContainer,
@@ -535,10 +572,14 @@ main .quiz .mainTextContainer .answersContainer li:focus {
       flex-basis: 100%;
 }
 .hiddenMain .wrapper #hiddenImg {
-  padding: 25px;
-  width: 50%;
-  max-width: 400px;
-  max-height: 80vh;
+  margin: 5% 0;
+  padding: 20px;
+  width: 80%;
+  max-width: 550px;
+  min-width: 320px;
+  border: 5px solid rgba(77, 66, 73, 0.537254902);
+  background-color: rgba(77, 66, 73, 0.8235294118);
+  border-radius: 2%;
 }
 .hiddenMain .wrapper button {
   font-size: 1.5rem;
@@ -552,8 +593,13 @@ main .quiz .mainTextContainer .answersContainer li:focus {
 .hiddenMain .wrapper button:focus {
   background-color: #59c9c5;
 }
+.hiddenMain .wrapper .hiddenLearnMoreContainer {
+  position: absolute;
+  bottom: 4%;
+  right: 5%;
+}
 .hiddenMain .wrapper .hiddenLearnMoreContainer p {
-  font-size: 1rem;
+  font-size: clamp(0.6rem, 2vw, 1rem);
   text-align: right;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -576,19 +622,15 @@ main .quiz .mainTextContainer .answersContainer li:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: -600px;
   background-color: rgba(229, 0, 122, 0.6509803922);
   text-decoration: none;
   color: #fff;
-  text-shadow: 5px 5px 10px #ff5ed5;
 }
 .hiddenMain .wrapper .hiddenLearnMoreContainer p a:hover {
   color: #59c9c5;
-  text-shadow: 20px 20px 10px #ff5ed5;
 }
 .hiddenMain .wrapper .hiddenLearnMoreContainer p a:focus {
   color: #59c9c5;
-  text-shadow: 20px 20px 10px #ff5ed5;
 }
 
 footer .footerMainContainer {
@@ -606,16 +648,32 @@ footer .footerMainContainer {
           align-items: center;
 }
 footer .footerMainContainer img {
-  max-width: 115%;
+  max-width: 100%;
+}
+footer .footerMainContainer .footerTextContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 footer .footerMainContainer .footerTextContainer h5 {
-  font-size: clamp(1.5rem, 2.5vw, 4rem);
-  padding: 0px 80px;
+  font-size: clamp(1.1rem, 2.5vw, 4rem);
+  padding: 0px 5%;
   margin-top: 30px;
   margin-bottom: 20px;
 }
 footer .footerMainContainer .footerTextContainer h5 span {
-  font-size: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-top: 10px;
+  font-size: clamp(1rem, 5vw, 1.2rem);
 }
 footer .footerMainContainer .footerTextContainer .socialMedias {
   display: -webkit-box;
@@ -624,6 +682,9 @@ footer .footerMainContainer .footerTextContainer .socialMedias {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
   margin-right: 30px;
 }
 footer .footerMainContainer .footerTextContainer .socialMedias li {
@@ -662,4 +723,108 @@ footer .footerContributions p a:hover {
 }
 footer .footerContributions p a:focus {
   color: #e5007c;
+}
+
+@media (max-width: 700px) {
+  header {
+    max-width: 100%;
+  }
+  header h2 {
+    max-width: 100%;
+  }
+  header h2 span {
+    white-space: break-spaces;
+  }
+  main h4 {
+    line-height: 1.3;
+  }
+  .answersContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .answersContainer li {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    width: 300px;
+  }
+  .socialMedias li {
+    font-size: 1.2rem;
+  }
+  footer .footerMainContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  footer .footerImg {
+    width: 99%;
+  }
+  footer .footerImg img {
+    width: 100%;
+  }
+  footer .socialMedias {
+    margin-right: 0;
+    font-size: 1.5rem;
+  }
+  .footerContributions {
+    padding-bottom: 1rem;
+    width: 100% p;
+    width-max-width: 90%;
+  }
+  .footerContributions a {
+    line-height: 20px;
+  }
+}
+@media (max-width: 400px) {
+  .wrapper {
+    width: 90%;
+  }
+  header .logoImg {
+    margin-top: 10px;
+    margin-left: -10px;
+  }
+  footer .footerTextContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 0 auto;
+    padding: 0 5px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  footer .footerTextContainer span {
+    text-align: end;
+  }
+  footer h5 {
+    padding: 0 10px;
+  }
+  footer .socialMedias {
+    margin-right: 0;
+  }
 }

@@ -13,22 +13,7 @@ img {
     padding: 0;
 }
 
-
-// .headerMenu a {
-//     padding: 0;
-//     border: 0;
-//     transition: 0.3s;
-//     &:hover {
-//         color: $cyan;
-//     }
-//      &:focus {
-//         color: $cyan;
-//     }
-// }
-
 .button {
-    color: $pink;
-    background-color: #e5007a62;
     padding: 18px 36px;
     font-size: 1rem;
     line-height: 32px;
@@ -36,6 +21,7 @@ img {
     text-align: center;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 0.25em;
     &:hover {
         background-color: #e5007ab4;
     }
