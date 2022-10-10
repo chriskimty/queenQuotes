@@ -257,7 +257,7 @@ html {
 
 h1 {
   font-family: "Montserrat";
-  font-size: 6rem;
+  font-size: clamp(2.7rem, 9vw, 6rem);
   color: #fff;
   font-weight: bolder;
 }
@@ -265,7 +265,7 @@ h1 {
 h2 {
   font-family: "Noto Sans Mono";
   line-height: 1.5;
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
   color: #fff;
 }
 
@@ -276,20 +276,20 @@ h3, h4, h5, p {
 
 h3 {
   line-height: 1.5;
-  font-size: 3.5rem;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
   margin: 0 auto;
 }
 
 h4 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   line-height: 1.5;
-  font-size: 2.5rem;
 }
 
 .button a, .answersContainer li, button {
   text-decoration: none;
   font-family: "Helvetica Neue";
   color: #fff;
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
 }
 
 .wrapper {
@@ -394,6 +394,7 @@ header .logoImg:focus {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+  padding-top: 5%;
 }
 .headerTextContainer h1 .rainbow {
   background-image: -webkit-gradient(linear, right top, left top, from(#C16AF4), color-stop(#3D87F5), color-stop(#3DF5D0), color-stop(#88992B), color-stop(#C0852B), color-stop(#EB6A2C), to(#F53D3D));
@@ -408,7 +409,7 @@ header .logoImg:focus {
   padding: 20px;
 }
 .headerTextContainer h2 span {
-  white-space: nowrap;
+  text-transform: capitalize;
 }
 .headerTextContainer .button {
   margin: 40px 0px;
@@ -432,7 +433,7 @@ header .logoImg:focus {
 main .quiz {
   background-image: url(../assets/mainImgOpt1.png);
   background-size: cover;
-  height: 100vh;
+  min-height: 105vh;
 }
 main .quiz .mainTextContainer {
   display: -webkit-box;
@@ -464,12 +465,21 @@ main .quiz .mainTextContainer .quoteContainer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: relative;
 }
 main .quiz .mainTextContainer .quoteContainer::before {
-  content: '"';
+  content: open-quote;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: clamp(3rem, 5vw, 4rem);
 }
 main .quiz .mainTextContainer .quoteContainer::after {
-  content: '"';
+  content: close-quote;
+  position: absolute;
+  bottom: -5%;
+  right: 0;
+  font-size: clamp(3rem, 5vw, 4rem);
 }
 main .quiz .mainTextContainer .answersContainer {
   display: -webkit-box;
@@ -494,7 +504,7 @@ main .quiz .mainTextContainer .answersContainer li {
       -ms-flex-align: center;
           align-items: center;
   color: #fff;
-  margin: 30px;
+  margin: clamp(10px, 2vw, 30px);
 }
 main .quiz .mainTextContainer .answersContainer li:hover {
   background-color: #59c9c5;
@@ -507,7 +517,9 @@ main .quiz .mainTextContainer .answersContainer li:focus {
   display: none;
   background-image: url(../assets/ruPaulMainStage.jpeg);
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 5%;
 }
 .hiddenMain .wrapper {
   display: -webkit-box;
@@ -525,7 +537,7 @@ main .quiz .mainTextContainer .answersContainer li:focus {
   background-color: rgba(77, 66, 73, 0.537254902);
 }
 .hiddenMain .wrapper .confirmationContainer p {
-  font-size: 2rem;
+  font-size: clamp(1.1rem, 3vw, 2rem);
   padding: 0px 50px;
 }
 .hiddenMain .wrapper .hiddenImgContainer,
@@ -535,10 +547,14 @@ main .quiz .mainTextContainer .answersContainer li:focus {
       flex-basis: 100%;
 }
 .hiddenMain .wrapper #hiddenImg {
-  padding: 25px;
-  width: 50%;
-  max-width: 400px;
-  max-height: 80vh;
+  margin: 5% 0;
+  padding: 20px;
+  width: 80%;
+  max-width: 550px;
+  min-width: 320px;
+  border: 5px solid rgba(77, 66, 73, 0.537254902);
+  background-color: rgba(77, 66, 73, 0.8235294118);
+  border-radius: 2%;
 }
 .hiddenMain .wrapper button {
   font-size: 1.5rem;
@@ -552,8 +568,13 @@ main .quiz .mainTextContainer .answersContainer li:focus {
 .hiddenMain .wrapper button:focus {
   background-color: #59c9c5;
 }
+.hiddenMain .wrapper .hiddenLearnMoreContainer {
+  position: absolute;
+  bottom: 4%;
+  right: 5%;
+}
 .hiddenMain .wrapper .hiddenLearnMoreContainer p {
-  font-size: 1rem;
+  font-size: clamp(0.6rem, 2vw, 1rem);
   text-align: right;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -576,19 +597,15 @@ main .quiz .mainTextContainer .answersContainer li:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: -600px;
   background-color: rgba(229, 0, 122, 0.6509803922);
   text-decoration: none;
   color: #fff;
-  text-shadow: 5px 5px 10px #ff5ed5;
 }
 .hiddenMain .wrapper .hiddenLearnMoreContainer p a:hover {
   color: #59c9c5;
-  text-shadow: 20px 20px 10px #ff5ed5;
 }
 .hiddenMain .wrapper .hiddenLearnMoreContainer p a:focus {
   color: #59c9c5;
-  text-shadow: 20px 20px 10px #ff5ed5;
 }
 
 footer .footerMainContainer {
@@ -606,16 +623,16 @@ footer .footerMainContainer {
           align-items: center;
 }
 footer .footerMainContainer img {
-  max-width: 115%;
+  max-width: 100%;
 }
 footer .footerMainContainer .footerTextContainer h5 {
-  font-size: clamp(1.5rem, 2.5vw, 4rem);
-  padding: 0px 80px;
+  font-size: clamp(1.1rem, 2.5vw, 4rem);
+  padding: 0px 5%;
   margin-top: 30px;
   margin-bottom: 20px;
 }
 footer .footerMainContainer .footerTextContainer h5 span {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 5vw, 1.2rem);
 }
 footer .footerMainContainer .footerTextContainer .socialMedias {
   display: -webkit-box;
@@ -662,4 +679,120 @@ footer .footerContributions p a:hover {
 }
 footer .footerContributions p a:focus {
   color: #e5007c;
+}
+
+@media (max-width: 1000px) {
+  .hiddenLearnMoreContainer {
+    bottom: 2%;
+    right: 2%;
+  }
+  .hiddenLearnMoreContainer a {
+    border-radius: 2%;
+    width: 140px;
+    height: 1rem;
+    background-color: rgba(229, 0, 122, 0.6509803922);
+  }
+}
+@media (max-width: 700px) {
+  header {
+    max-width: 100%;
+  }
+  header h2 {
+    max-width: 100%;
+  }
+  header h2 span {
+    white-space: break-spaces;
+  }
+  main h4 {
+    line-height: 1.3;
+  }
+  .answersContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .answersContainer li {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    width: 300px;
+  }
+  .socialMedias li {
+    font-size: 1.2rem;
+  }
+  footer .footerMainContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  footer .footerImg {
+    width: 99%;
+  }
+  footer .footerImg img {
+    width: 100%;
+  }
+  footer .socialMedias {
+    margin-right: 0;
+    font-size: 1.5rem;
+  }
+  .footerContributions {
+    padding-bottom: 1rem;
+    width: 100% p;
+    width-max-width: 90%;
+  }
+  .footerContributions a {
+    line-height: 20px;
+  }
+}
+@media (max-width: 400px) {
+  .wrapper {
+    width: 90%;
+  }
+  header .logoImg {
+    margin-top: 10px;
+    margin-left: -10px;
+  }
+  footer .footerTextContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 0 auto;
+    padding: 0 5px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  footer .footerTextContainer span {
+    text-align: end;
+  }
+  footer h5 {
+    padding: 0 10px;
+  }
+  footer .socialMedias {
+    margin-right: 0;
+  }
 }

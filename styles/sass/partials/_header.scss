@@ -38,7 +38,7 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-
+    padding-top: 5%;
     h1 {
       .rainbow {
         background-image: linear-gradient(to left, #C16AF4, #3D87F5, #3DF5D0, #88992B, #C0852B, #EB6A2C, #F53D3D);
@@ -54,7 +54,8 @@ header {
         background-color: #4d424963;
         padding: 20px;
         span {
-            white-space: nowrap;
+            // white-space: nowrap;
+            text-transform: capitalize;
         }
     }
     .button {
