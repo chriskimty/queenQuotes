@@ -92,16 +92,20 @@ main {
     .hiddenLearnMoreContainer {
       flex-basis: 100%;
     }
-    #hiddenImg {
-      margin: 5% 0;
-      padding: 20px;
+
+    .hiddenImgContainer {
       width: 80%;
       max-width: 550px;
       min-width: 320px;
-      border: 5px solid #4d424989;
-      background-color: #4d4249d2;
+      padding: 5%;
+      margin-bottom: 20px;
+    }
+    #hiddenImg {
+      object-fit: cover;
       border-radius: 2%;
-      // max-height: 80vh;
+      background-color: none;
+      border: 2px solid #9f98a3b5;
+      box-shadow: 15px 15px 45px -2px #9f98a3b5;
     }
     button {
       font-size: 1.5rem;
@@ -135,14 +139,11 @@ main {
           background-color: #e5007aa6;
           text-decoration: none;
           color: $white;
-          // text-shadow: 5px 5px 10px $pink;
           &:hover {
             color: $turquoise;
-            // text-shadow: 20px 20px 10px $pink;
           }
           &:focus {
             color: $turquoise;
-            // text-shadow: 20px 20px 10px $pink;
           }
         }
       }
