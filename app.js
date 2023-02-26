@@ -37,7 +37,6 @@ app.firebaseCall = () => {
       app.queenArray = snapshot.val().queens;
       app.queen1 = app.randomizer(app.queenArray);
       app.queen2 = app.randomizer(app.queenArray);
-      app.displayQuote();
       app.displayAnswers();
       } else {
         console.log("No data available");
@@ -48,28 +47,51 @@ app.firebaseCall = () => {
     })
 };
 
-app.displayQuote = () => {
-  app.quoteContainer.innerHTML = app.queen1.quote;
-};
-
 app.displayAnswers = () => {
   app.possibleAnswers = [app.queen1.name, app.queen2.name];
-  console.log(app.possibleAnswers);
-     app.possibleAnswers.forEach((element) => {
-      const listElement = document.createElement("li");
-      const queenOptions = document.createTextNode(element)
-      listElement.appendChild(queenOptions)
-      listElement.classList.add("button", "answers");
-      app.ulContainer.appendChild(listElement)
-    })
-};
 
-// NEXT STEPS
-// Run app.randomizer to select queen2 Name
+  if (app.queen1.id < app.queen2.id) {
+    app.quoteContainer.innerHTML = app.queen1.quote;
+    // app.hiddenImg.src = app.option1.image_url;
+    app.correctAnswer = app.queen1.name;
+  } else {
+    app.quoteContainer.innerHTML = app.queen2.quote;
+    // app.hiddenImg.src = app.option2.image_url;
+    app.correctAnswer = app.queen2.name;
+  }
+    app.possibleAnswers.forEach((element) => {
+    const listElement = document.createElement("li");
+    const queenOptions = document.createTextNode(element);
+    listElement.appendChild(queenOptions);
+    listElement.classList.add("button", "answers");  
+    app.ulContainer.appendChild(listElement)
+    })
+  
+  // app.answers.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   console.log("hehe");
+  // });
+};
+app.test = () => {
+  // const list = app.ulContainer.children
+  // if (list.item === app.correctAnswer) {
+  //   console.log('hi')
+  // } else {
+  //   console.log('bye')
+  // }
+  document.querySelector("answers").click(console.log('hi'));
+}
+// console.log(app.ulContainer.children.item(0));
+// app.selectAnswer = () => {
+//   app.ulContainer.children.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     console.log('hi')
+//   })
+// }
 
 // Function to run events
-app.events = function () {
-  app.hiddenButton.addEventListener("click", function (e) {
+app.events = () => {
+  app.hiddenButton.addEventListener("click", function (e){
     e.preventDefault();
     window.location.reload();
     window.location.assign("index.html#quizSection");
@@ -85,9 +107,11 @@ app.events = function () {
 
 // init function
 app.init = function () {
+  // app.selectAnswer();
   app.events();
   app.firebaseCall();
   app.randomizer();
+  app.test();
 };
 
 // call the init function
