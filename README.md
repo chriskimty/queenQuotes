@@ -15,8 +15,8 @@
 - DOM manipulation
 - Error handling and UI design
 - Competence in pair programming and communication
-- Worked with third-party API (\*API is no longer in service)
+- Worked with third-party API (*API is no longer in service)
 
 <p>
-Updated in Feb 2023: Using Firebase Realtime DB, we created our own database of Queens'👑 information!
+**Updated in Feb 2023: Using Firebase Realtime DB, we created our own database of Queens'👑 information!
 </p>
