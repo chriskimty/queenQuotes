@@ -81,7 +81,6 @@ app.selectAnswer = () => {
       });
       app.ulContainer.style.pointerEvents = "none";
 
-  // console.log(app.answers[i].innerHTML)
       if (app.answers[i].innerHTML === app.correctAnswer) {
         app.hiddenSection.style.display = "block";
         let displayPhrase = document.createElement("p");
