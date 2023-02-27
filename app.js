@@ -1,3 +1,14 @@
+import firebaseApp from "./firebase.js";
+import {
+  get,
+  ref,
+  getDatabase,
+  push,
+} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+const database = getDatabase(firebaseApp);
+const dbRef = ref(database);
+
 // Create an app object
 const app = {};
 
@@ -10,112 +21,102 @@ app.hiddenButton = document.querySelector(".hiddenButton");
 app.confirmationContainer = document.querySelector(".confirmationContainer");
 app.quizSection = document.querySelector("#quizSection");
 app.startGame = document.querySelector(".startGame");
+app.queenArray = [];
 
 // randomizer function to get a random queen index from the array
-app.randomizer = function (queenArray) {
-  const randomIndex = Math.floor(Math.random() * queenArray.length);
-  return queenArray[randomIndex];
+app.randomizer = (queenArray) => {
+  const randomIndex = Math.floor(Math.random() * app.queenArray.length);
+  // console.log(app.queenArray[randomIndex])
+  return app.queenArray[randomIndex];
 };
 
-// async await fetch request
-app.getQueens = async function () {
-  try {
-   const apiPromise = await fetch(
-    "http://www.nokeynoshade.party/api/queens/all"
-  );
-  const data = await apiPromise.json(); 
- 
-  // variables to access two randomized queens index
-  app.option1 = app.randomizer(data);
-  app.option2 = app.randomizer(data);
-
-  // regular expression to verify if the randomized queen index selected has a valid quote (!== "" || !== "\"\"")
-  const regExp = /[a-zA-Z]/;
-  //loop through the array until app.randomizer access a valid quote for option1 and option2
-  while (!regExp.test(app.option1.quote)) {
-    app.option1 = app.randomizer(data);
-  }
-  while (!regExp.test(app.option2.quote) || app.option2 === app.option1) {
-    app.option2 = app.randomizer(data);
-  }
-    app.displayQueensData(app.option1, app.option2);
-    
-    } catch (err) {
-    alert("Something went wrong. Please check your network connection and try again.", err);
-    }
-  app.displayAnswers();
+app.firebaseCall = () => {
+  get(dbRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+      app.queenArray = snapshot.val().queens;
+      app.queen1 = app.randomizer(app.queenArray);
+      app.queen2 = app.randomizer(app.queenArray);
+        app.displayAnswers();
+        app.selectAnswer();
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 };
 
-// Function to display the randomized queens properties onto the selected DOM Elements
-app.displayAnswers = function () {
-  app.arrayOfQueens = [app.option1, app.option2];
+app.displayAnswers = () => {
+  app.possibleAnswers = [app.queen1.name, app.queen2.name];
 
-  //For each option create elements to display the randomized queen names onto the page
-  app.arrayOfQueens.forEach(function (queenObject) {
-    listElement = document.createElement("li");
-    listElement.innerText = queenObject.name;
+  if (app.queen1.id < app.queen2.id) {
+    app.quoteContainer.innerHTML = app.queen1.quote;
+    app.hiddenImg.src = app.queen1.image_url;
+    app.correctAnswer = app.queen1.name;
+  } else {
+    app.quoteContainer.innerHTML = app.queen2.quote;
+    app.hiddenImg.src = app.queen2.image_url;
+    app.correctAnswer = app.queen2.name;
+  }
+
+  app.possibleAnswers.forEach((element) => {
+    const listElement = document.createElement("li");
+    const queenOptions = document.createTextNode(element);
+    listElement.appendChild(queenOptions);
     listElement.classList.add("button", "answers");
-    app.ulContainer.appendChild(listElement);
+    app.ulContainer.appendChild(listElement)
+  })
+};
 
-    //Event Listener on the list elements (answer options) to display the hidden section
-    listElement.addEventListener("click", function handler(e) {
-      e.preventDefault()
+app.selectAnswer = () => {
+  app.answers = app.ulContainer.children;
+  for (let i = 0; i < app.answers.length; i++) {
+    app.answers[i].addEventListener("click", (e) => {
+      e.preventDefault();
       app.hiddenSection.style.display = "block";
       app.hiddenSection.scrollIntoView({
-        behavior: "smooth"
-      })
-      //Once one of the options are clicked, disable pointer for both options
-      app.ulContainer.style.pointerEvents = "none"
+        behavior: "smooth",
+      });
+      app.ulContainer.style.pointerEvents = "none";
 
-      //Messages are displayed according to the answer chosen
-      if (this.innerHTML == app.correctAnswer) {
+      if (app.answers[i].innerHTML === app.correctAnswer) {
         app.hiddenSection.style.display = "block";
-        displayPhrase = document.createElement("p");
+        let displayPhrase = document.createElement("p");
         displayPhrase.innerText = "Condragulations. You're a winner, baby!";
-        app.confirmationContainer.appendChild(displayPhrase)
-        
+        app.confirmationContainer.appendChild(displayPhrase);
       } else {
-        displayPhrase = document.createElement("p");
-        displayPhrase.innerText = "Good God, Get a Grip Girl. Try again, hunty!";
-        app.confirmationContainer.appendChild(displayPhrase)
+        let displayPhrase = document.createElement("p");
+        displayPhrase.innerText =
+          "Good God, Get a Grip Girl. Try again, hunty!";
+        app.confirmationContainer.appendChild(displayPhrase);
       }
     });
-  });
-};
-
-// Function with if statement to designate the queen with the smaller index as the quote in question
-app.displayQueensData = function () {
-  if (app.option1.id < app.option2.id) {
-    app.quoteContainer.innerHTML = app.option1.quote;
-    app.hiddenImg.src = app.option1.image_url;
-    app.correctAnswer = app.option1.name;
-  } else {
-    app.quoteContainer.innerHTML = app.option2.quote;
-    app.hiddenImg.src = app.option2.image_url;
-    app.correctAnswer = app.option2.name;
   }
-};
+}
 
 // Function to run events
-app.events = function () {
-  app.hiddenButton.addEventListener("click", function (e) {
-    e.preventDefault()
-    window.location.reload()
-    window.location.assign('index.html#quizSection')
+app.events = () => {
+  app.hiddenButton.addEventListener("click", function (e){
+    e.preventDefault();
+    window.location.reload();
+    window.location.assign("index.html#quizSection");
   });
 
   app.startGame.addEventListener("click", function (e) {
-    e.preventDefault()
+    e.preventDefault();
     app.quizSection.scrollIntoView({
-      behavior: "smooth"
+      behavior: "smooth",
     });
   });
 };
 
 // init function
 app.init = function () {
-  app.getQueens();
   app.events();
+  app.firebaseCall();
+  app.randomizer();
 };
 
 // call the init function

@@ -31,7 +31,6 @@ main {
           top: 0;
           left: 0;
           font-size: clamp(3rem, 5vw, 4rem);
-
         }
         &::after {
           content: close-quote;
@@ -119,14 +118,14 @@ main {
       }
     }
     .hiddenLearnMoreContainer {
-    position: absolute;
-    bottom: 4%;
-    right: 5%;  
-    p {
-      font-size: clamp(0.6rem, 2vw, 1rem);
-      text-align: right;
-      display: flex;
-      justify-content: flex-end;
+      position: absolute;
+      bottom: 4%;
+      right: 5%;
+      p {
+        font-size: clamp(0.6rem, 2vw, 1rem);
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
         a {
           border-radius: 50%;
           display: flex;
