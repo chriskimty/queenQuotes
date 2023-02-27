@@ -37,7 +37,8 @@ app.firebaseCall = () => {
       app.queenArray = snapshot.val().queens;
       app.queen1 = app.randomizer(app.queenArray);
       app.queen2 = app.randomizer(app.queenArray);
-      app.displayAnswers();
+        app.displayAnswers();
+        app.selectAnswer();
       } else {
         console.log("No data available");
       }
@@ -52,42 +53,49 @@ app.displayAnswers = () => {
 
   if (app.queen1.id < app.queen2.id) {
     app.quoteContainer.innerHTML = app.queen1.quote;
-    // app.hiddenImg.src = app.option1.image_url;
+    app.hiddenImg.src = app.queen1.image_url;
     app.correctAnswer = app.queen1.name;
   } else {
     app.quoteContainer.innerHTML = app.queen2.quote;
-    // app.hiddenImg.src = app.option2.image_url;
+    app.hiddenImg.src = app.queen2.image_url;
     app.correctAnswer = app.queen2.name;
   }
-    app.possibleAnswers.forEach((element) => {
+
+  app.possibleAnswers.forEach((element) => {
     const listElement = document.createElement("li");
     const queenOptions = document.createTextNode(element);
     listElement.appendChild(queenOptions);
-    listElement.classList.add("button", "answers");  
+    listElement.classList.add("button", "answers");
     app.ulContainer.appendChild(listElement)
-    })
-  
-  // app.answers.addEventListener("click", (e) => {
-  //   e.preventDefault();
-  //   console.log("hehe");
-  // });
+  })
 };
-app.test = () => {
-  // const list = app.ulContainer.children
-  // if (list.item === app.correctAnswer) {
-  //   console.log('hi')
-  // } else {
-  //   console.log('bye')
-  // }
-  document.querySelector("answers").click(console.log('hi'));
+
+app.selectAnswer = () => {
+  app.answers = app.ulContainer.children;
+  for (let i = 0; i < app.answers.length; i++) {
+    app.answers[i].addEventListener("click", (e) => {
+      e.preventDefault();
+      app.hiddenSection.style.display = "block";
+      app.hiddenSection.scrollIntoView({
+        behavior: "smooth",
+      });
+      app.ulContainer.style.pointerEvents = "none";
+
+  // console.log(app.answers[i].innerHTML)
+      if (app.answers[i].innerHTML === app.correctAnswer) {
+        app.hiddenSection.style.display = "block";
+        let displayPhrase = document.createElement("p");
+        displayPhrase.innerText = "Condragulations. You're a winner, baby!";
+        app.confirmationContainer.appendChild(displayPhrase);
+      } else {
+        let displayPhrase = document.createElement("p");
+        displayPhrase.innerText =
+          "Good God, Get a Grip Girl. Try again, hunty!";
+        app.confirmationContainer.appendChild(displayPhrase);
+      }
+    });
+  }
 }
-// console.log(app.ulContainer.children.item(0));
-// app.selectAnswer = () => {
-//   app.ulContainer.children.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     console.log('hi')
-//   })
-// }
 
 // Function to run events
 app.events = () => {
@@ -107,11 +115,9 @@ app.events = () => {
 
 // init function
 app.init = function () {
-  // app.selectAnswer();
   app.events();
   app.firebaseCall();
   app.randomizer();
-  app.test();
 };
 
 // call the init function
